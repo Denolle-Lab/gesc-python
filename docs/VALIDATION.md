@@ -37,3 +37,41 @@ Not executed: CPS/SpecSWD comparison, physical source/residue waveform synthesis
 VTI/general anisotropy, attenuation, measured coda/stretching/MWCS inversion,
 large data generation, or performance benchmarking. See the benchmark plan and
 roadmap for those acceptance gates.
+
+## Worked seismology tutorials
+
+The notebook build executes five synthetic experiments in fresh kernels, with
+exceptions and scientific assertions blocking publication. It checks finite-
+water analytical dispersion, perturbed-model linear prediction, numerical
+error relative to observation uncertainty, posterior information after band
+selection, full-covariance joint/two-stage tomography equivalence, and an
+absolute-dispersion seabed MAP experiment. The Cook Inlet notebook separates
+published acquisition facts from synthetic geology and picks.
+
+The tiny `tests/data/tutorial_phase_reference.json` fixture contains fundamental
+Rayleigh/Scholte phase speeds for the three layered tutorial models. It was
+computed with disba 0.7.0's CPS-derived Dunkin implementation, using a 0.00005
+km/s velocity search increment. The model and frequencies are stored with the
+values. Tests require agreement within 0.005 m/s and passing GESC mode QC; they
+run offline without disba or Numba. This is a phase-only cross-check against a
+CPS-derived implementation, not a standalone CPS build/timing benchmark or
+waveform validation.
+
+Regenerate the reference intentionally with Python 3.12:
+
+```bash
+python -m pip install -r requirements/reference.txt
+python scripts/reference_dispersion.py
+```
+
+Geometry tests check conservation/reversal of cell path lengths, joint/staged
+Gaussian equivalence, DAS broadside and gauge nulls, the short-gauge limit, and
+apparent-velocity projection. A regression test prevents a maximum-overlap
+continuation from publishing an overtone as a QC-passing fundamental.
+
+`requirements/tutorials.txt` pins the optional notebook environment separately
+from core dependency constraints. The build writes package versions, source
+hashes, figures, assertion metrics, and execution times to `validation.json`.
+The GitHub Actions workflow executes the notebooks and tests before deploying
+GitHub Pages. Scientific calculations do not use network access; installation
+and deployment do.

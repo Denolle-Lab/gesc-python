@@ -1,0 +1,20 @@
+{% extends 'lab/index.html.j2' %}
+{% block html_head %}
+{{ super() }}
+<link rel="stylesheet" href="assets/style.css">
+<meta name="description" content="{{ resources.gesc_title }} — an executed GESC seismology tutorial">
+{% endblock html_head %}
+{% block body_header %}
+<nav class="tutorial-nav" aria-label="Tutorial navigation">
+<a class="brand" href="index.html">GESC <span>Seismology notebooks</span></a>
+<div><a href="index.html#tutorials">All tutorials</a>
+<a href="notebooks/{{ resources.gesc_slug }}.ipynb" download>Download notebook ↓</a>
+<a href="https://github.com/Denolle-Lab/gesc-python/tree/main/tutorials">Source ↗</a></div>
+</nav>
+<div class="tutorial-context">Executed synthetic experiment · SI units · explicit uncertainty</div>
+{{ super() }}
+{% endblock body_header %}
+{% block body_footer %}
+{{ super() }}
+<footer class="tutorial-footer">Denolle Lab · <a href="validation.json">Execution & numerical diagnostics</a> · <a href="index.html">Explore another tutorial</a></footer>
+{% endblock body_footer %}

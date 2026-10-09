@@ -106,3 +106,14 @@ mean, posterior predicted phase changes, averaging matrix, singular values of
 Ce^-1/2 G Ca^1/2, and a prior-dominance flag when posterior/prior variance >0.8.
 That flag threshold is descriptive and provisional. Baseline uncertainty,
 nonlinear inversion, and temporal regularization are later work.
+
+## Fundamental identity under rapid frequency variation
+
+A maximum-overlap assignment can follow an overtone through a rapid change of the
+fundamental eigenfield. The reference now requires branch zero to remain the
+lowest-speed candidate as well as pass the overlap test. A rank change produces
+an ambiguous result; `fundamental()` rejects it. This is a conservative guard,
+not an adaptive continuation algorithm or a proof of spectral completeness.
+The critical-zone regression checks a rapid eigenfield change, while the
+notebook uses a stable high-frequency band. Its fundamental dispersion is checked against a pinned CPS-derived
+Dunkin reference, with separate perturbation and numerical QC.

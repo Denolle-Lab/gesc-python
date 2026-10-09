@@ -71,3 +71,16 @@ def test_observable_and_coefficient_mismatch(dry, mode_request):
         linearize_phase(dry, mode_request, obs)
     with pytest.raises(ValueError, match="coefficient"):
         perturb_model(dry, [0, 0])
+
+
+def test_high_overlap_overtone_cannot_be_published_as_fundamental():
+    from tutorials.scenarios import critical_zone
+
+    model, request = critical_zone()
+    # At this large jump the maximum-overlap continuation follows an overtone,
+    # even though the fundamental is independently the lower-speed candidate.
+    request = request.model_copy(update={"frequencies_hz": (8.6, 10.3)})
+    modes = solve_modes(model, request)
+    assert modes.rows[1].status == "ambiguous"
+    with pytest.raises(ValueError, match="Fundamental branch failed"):
+        modes.fundamental()

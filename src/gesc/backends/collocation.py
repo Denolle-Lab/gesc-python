@@ -208,6 +208,7 @@ def solve_modes(model: EarthModel, request: ModeRequest) -> ModeSet:
             spectra = [_spectrum(model, mesh, frequency, family) for mesh in meshes]
             base = spectra[0][: request.max_modes]
             tracking = {i: 1.0 for i in range(len(base))}
+            fundamental_rank_changed = False
             if previous:
                 matches = _match(previous, spectra[0])
                 # Keep branch slots, rather than relabeling an overtone as fundamental.
@@ -224,6 +225,11 @@ def solve_modes(model: EarthModel, request: ModeRequest) -> ModeSet:
                     continue
                 base = [matches[i][0] for i in range(len(previous))]
                 tracking = {i: matches[i][1] for i in range(len(previous))}
+                # A high overlap can jump to an overtone across an avoided crossing.
+                # Branch zero denotes the lowest-speed candidate in this reference.
+                # Require both continuation and rank; do not certify the overtone
+                # as fundamental when frequency steps skip a rapid shape change.
+                fundamental_rank_changed = base[0] is not spectra[0][0]
             fine, deep = (_match(base, spectrum) for spectrum in spectra[1:])
             modes = []
             for i, candidate in enumerate(base):
@@ -232,7 +238,7 @@ def solve_modes(model: EarthModel, request: ModeRequest) -> ModeSet:
                 refinement = abs(refined.c / candidate.c - 1) if refined else 1.0
                 bottom_error = abs(deeper.c / candidate.c - 1) if deeper else 1.0
                 score = min(tracking[i], of, od)
-                ambiguous = score < request.overlap_min
+                ambiguous = score < request.overlap_min or (i == 0 and fundamental_rank_changed)
                 # Competing base eigenfunctions must be distinguishable by overlap.
                 if any(
                     overlap(candidate, other) > 0.98

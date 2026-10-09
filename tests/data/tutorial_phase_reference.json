@@ -1,0 +1,180 @@
+{
+  "reference": "disba, CPS-derived Dunkin phase-dispersion algorithm",
+  "disba_version": "0.7.0",
+  "numba_version": "0.68.0",
+  "numpy_version": "1.26.4",
+  "velocity_search_increment_km_s": 5e-05,
+  "scope": "Isotropic fundamental phase speed only; no standalone CPS timing claim",
+  "cases": [
+    {
+      "name": "critical_zone",
+      "model": {
+        "regions": [
+          {
+            "top_m": 0.0,
+            "bottom_m": 10.0,
+            "top": {
+              "vp_m_s": 800.0,
+              "vs_m_s": 250.0,
+              "density_kg_m3": 1700.0
+            },
+            "bottom": {
+              "vp_m_s": 800.0,
+              "vs_m_s": 250.0,
+              "density_kg_m3": 1700.0
+            }
+          },
+          {
+            "top_m": 10.0,
+            "bottom_m": 50.0,
+            "top": {
+              "vp_m_s": 1800.0,
+              "vs_m_s": 650.0,
+              "density_kg_m3": 2100.0
+            },
+            "bottom": {
+              "vp_m_s": 1800.0,
+              "vs_m_s": 650.0,
+              "density_kg_m3": 2100.0
+            }
+          }
+        ],
+        "halfspace": {
+          "vp_m_s": 3000.0,
+          "vs_m_s": 1500.0,
+          "density_kg_m3": 2400.0
+        },
+        "water": null,
+        "provenance": "Synthetic weathered critical zone; chosen teaching values, not a Shale Hills model",
+        "density_strategy": "explicit",
+        "units": "SI",
+        "symmetry": "isotropic"
+      },
+      "frequencies_hz": [
+        10.3,
+        12.0,
+        14.0,
+        16.0,
+        18.0
+      ],
+      "phase_velocity_m_s": [
+        498.6505220738593,
+        355.1946626988751,
+        281.90852988638323,
+        259.7712251988857,
+        250.09251426138667
+      ]
+    },
+    {
+      "name": "volcano",
+      "model": {
+        "regions": [
+          {
+            "top_m": 0.0,
+            "bottom_m": 300.0,
+            "top": {
+              "vp_m_s": 2000.0,
+              "vs_m_s": 900.0,
+              "density_kg_m3": 2000.0
+            },
+            "bottom": {
+              "vp_m_s": 2000.0,
+              "vs_m_s": 900.0,
+              "density_kg_m3": 2000.0
+            }
+          },
+          {
+            "top_m": 300.0,
+            "bottom_m": 1500.0,
+            "top": {
+              "vp_m_s": 3600.0,
+              "vs_m_s": 1800.0,
+              "density_kg_m3": 2400.0
+            },
+            "bottom": {
+              "vp_m_s": 3600.0,
+              "vs_m_s": 1800.0,
+              "density_kg_m3": 2400.0
+            }
+          }
+        ],
+        "halfspace": {
+          "vp_m_s": 5000.0,
+          "vs_m_s": 2800.0,
+          "density_kg_m3": 2700.0
+        },
+        "water": null,
+        "provenance": "Synthetic basaltic edifice; chosen teaching values, not a Piton de la Fournaise model",
+        "density_strategy": "explicit",
+        "units": "SI",
+        "symmetry": "isotropic"
+      },
+      "frequencies_hz": [
+        0.5,
+        0.65,
+        0.85,
+        1.1,
+        1.45,
+        1.8
+      ],
+      "phase_velocity_m_s": [
+        1945.5852688152002,
+        1677.930581314635,
+        1540.7102688143455,
+        1414.94230006408,
+        1061.463393813334,
+        923.6829250632128
+      ]
+    },
+    {
+      "name": "cook_inlet",
+      "model": {
+        "regions": [
+          {
+            "top_m": 0.0,
+            "bottom_m": 100.0,
+            "top": {
+              "vp_m_s": 1700.0,
+              "vs_m_s": 350.0,
+              "density_kg_m3": 1900.0
+            },
+            "bottom": {
+              "vp_m_s": 1700.0,
+              "vs_m_s": 350.0,
+              "density_kg_m3": 1900.0
+            }
+          }
+        ],
+        "halfspace": {
+          "vp_m_s": 2400.0,
+          "vs_m_s": 800.0,
+          "density_kg_m3": 2200.0
+        },
+        "water": {
+          "depth_m": 80.0,
+          "sound_speed_m_s": 1480.0,
+          "density_kg_m3": 1025.0,
+          "surface_boundary": "pressure_release"
+        },
+        "provenance": "Synthetic KKFL-S-inspired sediment; 80 m segment-average water depth from Ni et al. 2024; geology assumed",
+        "density_strategy": "explicit",
+        "units": "SI",
+        "symmetry": "isotropic"
+      },
+      "frequencies_hz": [
+        1.5,
+        1.8,
+        2.1,
+        2.5,
+        2.8
+      ],
+      "phase_velocity_m_s": [
+        395.5725840529748,
+        344.7448496779804,
+        326.8348887404823,
+        317.55109967798336,
+        314.5591074904837
+      ]
+    }
+  ]
+}

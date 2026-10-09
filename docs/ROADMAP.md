@@ -54,3 +54,18 @@ Time-lapse priors and regularization cannot create missing vertical resolution.
 Do not combine waveform/curve/image likelihoods as independent evidence when
 derived from the same observations. Ambient correlations require an illumination
 operator; they are not automatically point-source Green functions.
+
+### Completed tutorial slice
+
+Five worked synthetic seismology notebooks and a static GitHub Pages build cover
+critical-zone monitoring, volcanic elastic-change hypotheses, water–solid
+tradeoffs, covariance in time-lapse tomography, and KKFL-S-informed offshore DAS.
+The final notebook includes a limited absolute-dispersion Vs MAP experiment.
+The tutorials do not turn the core into a production lateral tomography,
+structural inversion, coda sensitivity, cable-mechanics, or waveform package.
+
+Field integration can next accept locally constrained background models and
+measured dispersion/covariance, including channel geometry and bathymetry for
+KKFL-S. Absolute/baseline model uncertainty, general structural inversion,
+branch continuation near degeneracy, and estimator-specific coda sensitivity
+remain separate milestones.

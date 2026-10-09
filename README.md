@@ -87,3 +87,16 @@ Chebyshev Spectral Collocation*, BSSA 102(3), 1214-1223,
 This implementation rederives a displacement quadratic pencil; it is not a
 literal translation of the paper's modified-stress linear pencil or the MATLAB
 code. No existing solver source or copyrighted paper PDF is vendored here.
+
+## Seismology tutorials
+
+Read the [executed HTML tutorials](https://denolle-lab.github.io/gesc-python/) or explore
+[the notebooks](tutorials/README.md): critical-zone depth changes, volcanic-edifice
+monitoring, Scholte water–solid tradeoffs, time-lapse tomography covariance, and
+Cook Inlet KKFL-S offshore DAS. Each tutorial carries explicit synthetic/model
+assumptions, numerical checks, uncertainty plots, and field-interpretation limits.
+The Cook Inlet example uses cited acquisition parameters with synthetic seabed
+dispersion, including an absolute Vs fit and a small-change depth inversion.
+
+The optional notebook dependencies are separate from the core numerical package.
+GitHub Pages reruns all notebooks and their scientific assertions before publishing.
